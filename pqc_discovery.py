@@ -169,9 +169,8 @@ def write_csv(path: str, rows: List[Dict[str, Any]]) -> None:
     if not rows:
         print(f"[OUT] No data for {path}")
         return
-    fieldnames = rows[0].keys()
+    fieldnames = list(rows[0].keys())
     with open(path, "w", newline="", encoding="utf-8") as f:
-        csv.DictWriter(f, fieldnames=fieldnames).writeheader()
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
